@@ -14,7 +14,6 @@ jobs:
         uses: actions/setup-java@v2
         with:
           java-version: '17'
-          distribution: 'adopt'
 
       - name: Build with Maven
         run: mvn clean verify
@@ -22,8 +21,5 @@ jobs:
       - name: Run SonarQube analysis
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: mvn sonar:sonar \
-          -Dsonar.projectKey=my_bilibili_integration \
-          -Dsonar.host.url=https://2c1d-117-160-31-179.ngrok-free.app \
-          -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+        run: mvn sonar:sonar -Dsonar.projectKey=my_bilibili_integration -Dsonar.host.url=https://2c1d-117-160-31-179.ngrok-free.app -Dsonar.login=${{ secrets.SONAR_TOKEN }}
 
