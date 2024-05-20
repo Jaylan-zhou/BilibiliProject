@@ -22,9 +22,11 @@ jobs:
       - name: Run SonarQube analysis
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: mvn sonar:sonar \
+        run: |
+          mvn sonar:sonar \
           -Dsonar.projectKey=my_bilibili_integration \
-          -Dsonar.host.url=https://f682-117-160-31-179.ngrok-free.app
+          -Dsonar.host.url=https://2c1d-117-160-31-179.ngrok-free.app
+
 
 
 
