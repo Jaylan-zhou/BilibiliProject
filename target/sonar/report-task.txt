@@ -1,6 +1,0 @@
-projectKey=my_bilibili_integration
-serverUrl=http://localhost:9000
-serverVersion=10.5.1.90531
-dashboardUrl=http://localhost:9000/dashboard?id=my_bilibili_integration
-ceTaskId=852f5739-a073-4ca3-b5e2-85f5975c276d
-ceTaskUrl=http://localhost:9000/api/ce/task?id=852f5739-a073-4ca3-b5e2-85f5975c276d

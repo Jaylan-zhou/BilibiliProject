@@ -1,0 +1,5 @@
+com/example/mybilibiliintegration/MybilibiliIntegrationApplication.class
+com/example/mybilibiliintegration/model/Video.class
+com/example/mybilibiliintegration/service/VideoService.class
+com/example/mybilibiliintegration/controller/VideoFileController.class
+com/example/mybilibiliintegration/controller/VideoController.class
