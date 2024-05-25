@@ -1,10 +1,32 @@
 name: CI
 
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - '**'  # 监听所有分支的推送事件
+  pull_request:
+    branches:
+      - '**'  # 监听所有分支的 PR 事件
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:5.7
+        ports:
+          - 3306:3306
+        env:
+          MYSQL_ROOT_PASSWORD: rootpassword
+          MYSQL_DATABASE: bilibili
+          MYSQL_USER: zhou
+          MYSQL_PASSWORD: zjy20020909+
+        options: >-
+          --health-cmd="mysqladmin ping --silent"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=3
 
     steps:
       - name: Checkout code
@@ -25,6 +47,10 @@ jobs:
 
       - name: Build with Maven
         run: mvn clean verify
+        env:
+          SPRING_DATASOURCE_URL: jdbc:mysql://localhost:3306/bilibili
+          SPRING_DATASOURCE_USERNAME: zhou
+          SPRING_DATASOURCE_PASSWORD: zjy20020909+
 
       - name: Upload test results
         if: always()

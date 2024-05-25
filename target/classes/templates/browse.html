@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Browse Videos</title>
+</head>
+<body>
+<h1>Video List</h1>
+<div id="videos">
+    <th:block th:each="video : ${videos}">
+        <div>
+            <h2 th:text="${video.title}">Video Title</h2>
+            <p th:text="${video.description}">Video Description</p>
+            <video controls width="600">
+                <source th:src="@{${video.url}}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </th:block>
+</div>
+</body>
+</html>
+
