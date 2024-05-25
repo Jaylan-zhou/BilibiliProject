@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: com.example.mybilibiliintegration.controller.VideoListControllerTest
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.536 s <<< FAILURE! - in com.example.mybilibiliintegration.controller.VideoListControllerTest
+testListVideos  Time elapsed: 0.515 s  <<< ERROR!
+javax.servlet.ServletException: Circular view path [browse]: would dispatch back to the current handler URL [/browse] again. Check your ViewResolver setup! (Hint: This may be the result of an unspecified view, due to default view name generation.)
+	at com.example.mybilibiliintegration.controller.VideoListControllerTest.testListVideos(VideoListControllerTest.java:60)
+

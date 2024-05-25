@@ -1,12 +1,18 @@
 package com.example.mybilibiliintegration.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Video {
+
+    @Id
     private String id;
     private String title;
     private String description;
     private String url;
 
-    // Getter and setter for id
+    // Getters and Setters
     public String getId() {
         return id;
     }
@@ -15,7 +21,6 @@ public class Video {
         this.id = id;
     }
 
-    // Getter and setter for title
     public String getTitle() {
         return title;
     }
@@ -24,7 +29,6 @@ public class Video {
         this.title = title;
     }
 
-    // Getter and setter for description
     public String getDescription() {
         return description;
     }
@@ -33,7 +37,6 @@ public class Video {
         this.description = description;
     }
 
-    // Getter and setter for url
     public String getUrl() {
         return url;
     }

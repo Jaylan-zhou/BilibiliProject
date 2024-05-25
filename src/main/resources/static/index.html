@@ -6,17 +6,44 @@
 </head>
 <body>
 <h1>Upload Video</h1>
-<form action="/videos/upload" method="post" enctype="multipart/form-data">
+<form id="uploadForm" enctype="multipart/form-data">
     <input type="text" name="title" placeholder="Title" required><br><br>
     <textarea name="description" placeholder="Description" required></textarea><br><br>
     <input type="file" name="file" accept="video/*" required><br><br>
     <input type="submit" value="Upload">
 </form>
 
+<p id="uploadSuccessMessage" style="color:green; display:none;">Your video is uploaded successfully!</p>
+
 <h1>Video List</h1>
 <div id="videos"></div>
 
 <script>
+    document.getElementById('uploadForm').addEventListener('submit', async function(event) {
+        event.preventDefault();
+
+        const form = event.target;
+        const formData = new FormData(form);
+
+        try {
+            const response = await fetch('/videos/upload', {
+                method: 'POST',
+                body: formData
+            });
+
+            if (response.ok) {
+                document.getElementById('uploadSuccessMessage').style.display = 'block';
+                form.reset();
+                loadVideos();
+            } else {
+                alert('Failed to upload video. Please try again.');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('Failed to upload video. Please try again.');
+        }
+    });
+
     async function loadVideos() {
         const response = await fetch('/videos');
         const videos = await response.json();
@@ -26,13 +53,13 @@
         videos.forEach(video => {
             const videoElement = document.createElement('div');
             videoElement.innerHTML = `
-                    <h2>${video.title}</h2>
-                    <p>${video.description}</p>
-                    <video controls width="600">
-                        <source src="${video.url}" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                `;
+                <h2>${video.title}</h2>
+                <p>${video.description}</p>
+                <video controls width="600">
+                    <source src="${video.url}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            `;
             videosDiv.appendChild(videoElement);
         });
     }
@@ -41,4 +68,3 @@
 </script>
 </body>
 </html>
-
